@@ -36,6 +36,10 @@ SpriteAnimation::SpriteAnimation(std::shared_ptr<Models> model, std::shared_ptr<
 	m_Vec3Scale = Vector3((float)m_iWidth / screenWidth, (float)m_iHeight / screenHeight, 1);
 }
 
+SpriteAnimation::SpriteAnimation()
+{
+}
+
 SpriteAnimation::~SpriteAnimation()
 {
 }

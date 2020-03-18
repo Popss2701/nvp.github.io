@@ -1,5 +1,5 @@
 #pragma once
-#include "BaseObject.h"
+#include "SpriteAnimation.h"
 enum ShipTypes
 {
 	INVALID = 0,
@@ -10,7 +10,7 @@ enum ShipTypes
 };
 
 class Ship :
-	public BaseObject
+	public SpriteAnimation
 {
 public:
 	Ship();
@@ -22,13 +22,13 @@ public:
 	void SetHp(int hp) { m_iHp = hp; }
 	int GetHp() { return m_iHp; }
 	void SetIsActive(){}
-	virtual void SetSprite() = 0;
-	virtual bool IsCollide() = 0;
-
-private:
-	std::list<std::shared_ptr<Ship>>	m_listShip;
+	//virtual bool IsCollide() = 0;
+protected:
 	int m_iHp;
 	bool m_bIsActive;
+private:
+	std::list<std::shared_ptr<Ship>>	m_listShip;
+	
 
 };
 

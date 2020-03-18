@@ -1,7 +1,7 @@
 #pragma once
-#include "EnemyShip.h"
+#include "Ship.h"
 class MediumEnemy :
-	public EnemyShip
+	public Ship
 {
 public:
 	MediumEnemy();

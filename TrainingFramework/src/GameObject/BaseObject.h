@@ -1,6 +1,5 @@
 #pragma once
 #include "utilities.h" 
-#include "GameManager/ResourceManagers.h"
 
 class Shaders;
 class Models;

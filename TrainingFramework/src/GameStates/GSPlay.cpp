@@ -9,6 +9,7 @@
 #include "Sprite3D.h"
 #include "Text.h"
 #include "SpriteAnimation.h"
+#include "Player.h"
 //#include"GameObject/"
 extern int screenWidth; //need get on Graphic engine
 extern int screenHeight; //need get on Graphic engine
@@ -28,7 +29,7 @@ void GSPlay::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 	auto texture = ResourceManagers::GetInstance()->GetTexture("1bg");
-
+	
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 	m_BackGround = std::make_shared<Sprite2D>(model, shader, texture);
@@ -53,12 +54,14 @@ void GSPlay::Init()
 	// Animation
 	shader = ResourceManagers::GetInstance()->GetShader("Animation");
 	texture = ResourceManagers::GetInstance()->GetTexture("1ship");
-	std::shared_ptr<SpriteAnimation> obj = std::make_shared<SpriteAnimation>(model, shader, texture, 1, 0.1f);
-	obj->Set2DPosition(240, 650);
-	obj->SetSize(52, 52);
-	m_listSpriteAnimations.push_back(obj);
+	m_Player = std::make_shared<Player>(model, shader, texture, 2, 0.1f);
+	m_Player->Set2DPosition(240, 650);
+	m_Player->SetSize(52, 52);
+	m_listSpriteAnimations.push_back(m_Player);
+	
 	
 	//text game title
+
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
 	m_score = std::make_shared< Text>(shader, font, "score: 0", TEXT_COLOR::RED, 1.0);
@@ -91,37 +94,7 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 {
 	if (bIsPressed)
 	{
-		if (key == 38 || key == 87)
-		{
-			for (auto obj : m_listSpriteAnimations)
-			{
-				obj->Set2DPosition(obj->Get2DPosition().x, obj->Get2DPosition().y - 10);
-			}
-		}
-
-		if (key == 40 || key == 83)
-		{
-			for (auto obj : m_listSpriteAnimations)
-			{
-				obj->Set2DPosition(obj->Get2DPosition().x, obj->Get2DPosition().y + 10);
-			}
-		}
-
-		if (key == 37 || key == 65)
-		{
-			for (auto obj : m_listSpriteAnimations)
-			{
-				obj->Set2DPosition(obj->Get2DPosition().x - 10, obj->Get2DPosition().y);
-			}
-		}
-
-		if (key == 39 || key == 68)
-		{
-			for (auto obj : m_listSpriteAnimations)
-			{
-				obj->Set2DPosition(obj->Get2DPosition().x + 10, obj->Get2DPosition().y);
-			}
-		}
+		m_Player->Move(key);
 	}
 }
 

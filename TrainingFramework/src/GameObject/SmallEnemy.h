@@ -6,6 +6,5 @@ class SmallEnemy :
 public:
 	SmallEnemy();
 	virtual ~SmallEnemy();
-	void SetSprite(std::shared_ptr<SpriteAnimation> obj);
 };
 

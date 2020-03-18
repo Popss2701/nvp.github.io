@@ -1,5 +1,5 @@
 #pragma once
-#include "baseobject.h"
+#include "BaseObject.h"
 
 
 class Sprite3D : public BaseObject
