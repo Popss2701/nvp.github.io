@@ -1,5 +1,5 @@
 #pragma once
-#include "BaseObject.h"
+#include "SpriteAnimation.h"
 
 enum LaserType {
 	Invalid = 0,
@@ -7,16 +7,17 @@ enum LaserType {
 	Laser2,
 };
 class Bullet :
-	public BaseObject
+	public SpriteAnimation
 {
 public:
-	Bullet();
+	Bullet(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, GLint numFrames, GLfloat frameTime, int dame);
 	virtual ~Bullet();
-	void PopList();
 	bool IsCollide();
+	void SetDame(int add);
+	int GetDame() { return m_iDamege; };
+	void Move();
 private:
-	int damege;
-	std::list<std::shared_ptr<Bullet>>	m_listBullet;
+	int m_iDamege;
 
 };
 

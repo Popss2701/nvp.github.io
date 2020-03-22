@@ -121,8 +121,6 @@ void Sprite2D::Draw()
 
 void Sprite2D::Update(GLfloat deltatime)
 {
-	m_Vec2DPos.y+=100*deltatime;
-	this->Set2DPosition(m_Vec2DPos);
 }
 
 

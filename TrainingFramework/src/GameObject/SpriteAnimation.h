@@ -9,6 +9,7 @@ protected:
 	Vector2			m_Vec2DPos;
 	GLint			m_iHeight;
 	GLint			m_iWidth;
+	Vector2			m_Vec2DSize = Vector2(m_iWidth, m_iHeight);
 	GLint			m_numFrames;
 	GLint			m_currentFrame;
 	GLfloat			m_frameTime;
@@ -27,6 +28,7 @@ public:
 	void		Set2DPosition(Vector2 pos);
 
 	Vector2		Get2DPosition();
+	Vector2		Get2DSize();
 	void		SetSize(GLint width, GLint height);
 };
 

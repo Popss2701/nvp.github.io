@@ -13,21 +13,19 @@ class Ship :
 	public SpriteAnimation
 {
 public:
-	Ship();
+	//Ship();
+	Ship(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, GLint numFrames, GLfloat frameTime);
 	virtual ~Ship();
-	void PopList();
-	void Move();
 	void Shoot();
 	void Explode();
 	void SetHp(int hp) { m_iHp = hp; }
 	int GetHp() { return m_iHp; }
-	void SetIsActive(){}
-	//virtual bool IsCollide() = 0;
+	std::list<std::shared_ptr<Ship>>	m_listShip;
 protected:
 	int m_iHp;
 	bool m_bIsActive;
 private:
-	std::list<std::shared_ptr<Ship>>	m_listShip;
+	
 	
 
 };
