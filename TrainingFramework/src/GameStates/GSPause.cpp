@@ -67,23 +67,24 @@ void GSPause::Init()
 
 	//sound on button
 	texture = ResourceManagers::GetInstance()->GetTexture("1soundon");
-	button = std::make_shared<GameButton>(model, shader, texture);
-	button->Set2DPosition(screenWidth / 2 - 60 - 15, screenHeight / 2 + 15);
-	button->SetSize(60, 60);
-	button->SetOnClick([]() {
-
+	m_sound = std::make_shared<GameButton>(model, shader, texture);
+	m_sound->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
+	m_sound->SetSize(60, 60);
+	m_sound->SetOnClick([]() {
+		ResourceManagers::GetInstance()->PlaySound("bg1");
+		
 	});
-	m_listButton.push_back(button);
 
 	//mute button
 	texture = ResourceManagers::GetInstance()->GetTexture("1mute");
-	button = std::make_shared<GameButton>(model, shader, texture);
-	button->Set2DPosition(screenWidth / 2 + 15, screenHeight / 2 + 15);
-	button->SetSize(60, 60);
-	button->SetOnClick([]() {
-
+	m_mute = std::make_shared<GameButton>(model, shader, texture);
+	m_mute->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
+	m_mute->SetSize(60, 60);
+	m_mute->SetOnClick([]() {
+		ResourceManagers::GetInstance()->PauseSound("bg1");
+		//GSPause::MuteUnmute();
+		
 	});
-	m_listButton.push_back(button);
 
 	//text game title
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
@@ -135,12 +136,32 @@ void GSPause::Update(float deltaTime)
 {
 }
 
+void GSPause::MuteUnmute()
+{
+	if(m_IsMute)
+	{
+		m_IsMute = false;
+	}
+	else
+	{
+		m_IsMute = true;
+	}
+}
+
 void GSPause::Draw()
 {
 	m_BackGround->Draw();
 	for (auto it : m_listButton)
 	{
 		it->Draw();
+	}
+	if (m_IsMute)
+	{
+		m_sound->Draw();
+	}
+	else
+	{
+		m_mute->Draw();
 	}
 	m_text->Draw();
 }

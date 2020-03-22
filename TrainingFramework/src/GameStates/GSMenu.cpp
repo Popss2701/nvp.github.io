@@ -60,8 +60,11 @@ void GSMenu::Init()
 	//text game title
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
-	m_Text_gameName = std::make_shared< Text>(shader, font, "SAMPLE NAME", TEXT_COLOR::GREEN, 1.0);
+	m_Text_gameName = std::make_shared< Text>(shader, font, "Space Shooting", TEXT_COLOR::GREEN, 1.0);
 	m_Text_gameName->Set2DPosition(Vector2(screenWidth / 2 - 80, 120));
+
+	//sound
+	ResourceManagers::GetInstance()->PlaySound("bg1");
 }
 
 void GSMenu::Exit()
@@ -87,7 +90,10 @@ void GSMenu::HandleEvents()
 
 void GSMenu::HandleKeyEvents(int key, bool bIsPressed)
 {
-	printf("aaaaaa");
+	if (!bIsPressed&&key==27)
+	{
+		exit(0);
+	}
 }
 
 void GSMenu::HandleTouchEvents(int x, int y, bool bIsPressed)

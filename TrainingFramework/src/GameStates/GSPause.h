@@ -17,6 +17,7 @@ public:
 
 	void Pause();
 	void Resume();
+	void MuteUnmute();
 
 	void HandleEvents();
 	void HandleKeyEvents(int key, bool bIsPressed);
@@ -27,7 +28,9 @@ public:
 private:
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::shared_ptr<Text>  m_text;
+	std::shared_ptr<GameButton> m_mute;
+	std::shared_ptr<GameButton> m_sound;
 	std::list<std::shared_ptr<GameButton>>	m_listButton;
 	std::vector < std::shared_ptr<Sprite2D>> m_listSprite2D;
-
+	bool m_IsMute = false;
 };

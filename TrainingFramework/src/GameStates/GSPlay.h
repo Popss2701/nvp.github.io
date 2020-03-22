@@ -2,7 +2,7 @@
 #include "gamestatebase.h"
 #include "GameButton.h"
 #include "Player.h"
-
+#include "SmallEnemy.h"
 class Sprite2D;
 class Sprite3D;
 class Text;
@@ -28,14 +28,19 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	
+	bool IsCollided(Vector2 locA, Vector2 sizeA, Vector2 locB, Vector2 sizeB);
+	void CheckCollide();
 	void SetNewPostionForBullet();
 
 private:
 
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::shared_ptr<Player> m_Player;
+	std::shared_ptr<SmallEnemy> m_Enemy;
 	std::shared_ptr<Text>  m_score;
+	std::vector < std::shared_ptr<SmallEnemy>> m_listSmallEnemy;
+	std::vector < std::shared_ptr<Bullet>> m_listEnemyBullet;
+	std::vector < std::shared_ptr<Bullet>> m_listPlayerBullet;
 	std::vector < std::shared_ptr<Sprite2D>> m_listSprite2D;
 	std::vector < std::shared_ptr<SpriteAnimation>> m_listSpriteAnimations;
 	std::list<std::shared_ptr<GameButton>>	m_listButton;

@@ -9,10 +9,11 @@
 #include "Sprite3D.h"
 #include "Text.h"
 #include "SpriteAnimation.h"
-#include "Player.h"
-//#include"GameObject/"
+#include <cstdlib>
+#include <ctime>
 extern int screenWidth; //need get on Graphic engine
 extern int screenHeight; //need get on Graphic engine
+#define NUMSMALL 1
 
 GSPlay::GSPlay()
 {
@@ -59,13 +60,33 @@ void GSPlay::Init()
 	m_Player->SetSize(52, 52);
 	m_listSpriteAnimations.push_back(m_Player);
 	
-	
-	//text game title
+	static int IdSmall = 1;
+	for (int i = 0; i<NUMSMALL;i++)
+	{
+		texture = ResourceManagers::GetInstance()->GetTexture("1enemy_small");
+		auto Enemy = std::make_shared<SmallEnemy>(model, shader, texture, 2, 0.1f, IdSmall);
+		Enemy->Set2DPosition(rand() % screenWidth, 50);
+		Enemy->SetSize(52, 52);
+		m_listSmallEnemy.push_back(Enemy);
+		IdSmall++;
+	}
 
+	texture = ResourceManagers::GetInstance()->GetTexture("1explosion");
+	auto explosion = std::make_shared<SpriteAnimation>(model, shader, texture, 5, 0.1f);
+	explosion->SetSize(50, 50);
+	m_listSpriteAnimations.push_back(explosion);
+	
+
+	//text game title
+	
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
-	m_score = std::make_shared< Text>(shader, font, "score: 0", TEXT_COLOR::RED, 1.0);
+	m_score = std::make_shared< Text>(shader, font, "0", TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
+
+	//sound
+	//ResourceManagers::GetInstance()->AddSound("bossbg");
+	ResourceManagers::GetInstance()->PlaySound("bg1");
 }
 
 void GSPlay::Exit()
@@ -100,7 +121,7 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 
 void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
-	if (!bIsPressed)
+	if (bIsPressed)
 	{
 		for (auto it : m_listButton)
 		{
@@ -112,18 +133,39 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 
 void GSPlay::Update(float deltaTime)
 {
-	for (auto obj : m_listSpriteAnimations)
+	CheckCollide();
+	m_Player->Update(deltaTime);
+	
+
+	for (auto obj : m_listSmallEnemy)
 	{
 		obj->Update(deltaTime);
+		obj->Move(deltaTime);
+		if (obj->Get2DPosition().y > screenHeight)
+		{
+			// m_listSmallEnemy.erase()
+
+		}
 	}
 
-	for (auto bg : m_listSprite2D)
+	Vector2 oldPos1 = m_listSprite2D[0]->Get2DPosition();
+	Vector2 oldPos2 = m_listSprite2D[1]->Get2DPosition();
+	float deltaMove = 100 * deltaTime;
+	if (oldPos1.y > screenHeight * 3 / 2)
 	{
-		bg->Update(deltaTime);
-		if (bg->Get2DPosition().y > screenHeight * 3 / 2-1)
-		{
-			bg->Set2DPosition(screenWidth / 2, -screenHeight / 2);
-		}
+		m_listSprite2D[0]->Set2DPosition(oldPos1.x, oldPos2.y + deltaMove - screenHeight);
+	}
+	else
+	{
+		m_listSprite2D[0]->Set2DPosition(oldPos1.x, oldPos1.y + deltaMove);
+	}
+	if (oldPos2.y > screenHeight * 3 / 2)
+	{
+		m_listSprite2D[1]->Set2DPosition(oldPos2.x, oldPos1.y + deltaMove - screenHeight);
+	}
+	else
+	{
+		m_listSprite2D[1]->Set2DPosition(oldPos2.x, oldPos2.y + deltaMove);
 	}
 }
 
@@ -134,10 +176,13 @@ void GSPlay::Draw()
 		bg->Draw();
 	}
 
-	for (auto obj : m_listSpriteAnimations)
+	m_Player->Draw();
+
+	for (auto obj : m_listSmallEnemy)
 	{
 		obj->Draw();
 	}
+
 	for (auto it : m_listButton)
 	{
 		it->Draw();
@@ -145,6 +190,35 @@ void GSPlay::Draw()
 	m_score->Draw();
 }
 
+bool GSPlay::IsCollided(Vector2 locA, Vector2 sizeA, Vector2 locB, Vector2 sizeB)
+{
+	if (locA.x>locB.x)
+	{
+		return IsCollided(locB, sizeB, locA, sizeA);
+	}
+	if ((locA.y+sizeA.y>=locB.x||locB.y+sizeB.y>=locA.y)&&locA.x+sizeA.x>=locB.x)
+	{
+		return true;
+	}
+	else { return false; }
+}
+
 void GSPlay::SetNewPostionForBullet()
 {
+}
+
+void GSPlay::CheckCollide()
+{
+	for (auto obj : m_listSmallEnemy)
+	{
+		if (IsCollided(obj->Get2DPosition(), obj->Get2DSize(), m_Player->Get2DPosition(), m_Player->Get2DSize()))
+		{
+			for (auto it : m_listSpriteAnimations) 
+			{ 
+				it->Set2DPosition(obj->Get2DPosition());
+				it->Draw();
+
+			}
+		}
+	}
 }
