@@ -16,6 +16,9 @@
     <Filter Include="TrainingFramework\src\GameStates">
       <UniqueIdentifier>{2a875364-1a2b-4ea6-a6fe-716988208916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TrainingFramework\Soloud">
+      <UniqueIdentifier>{0322cc07-a32d-4821-b6ca-b04fcbdf4037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -193,6 +196,111 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\Ship.h">
       <Filter>TrainingFramework\src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_audiosource.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_bassboostfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_biquadresonantfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_bus.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_c.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_dcremovalfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_echofilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_error.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_fader.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_fft.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_fftfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_file.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_file_hack_off.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_file_hack_on.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_filter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_flangerfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_freeverbfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_internal.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_lofifilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_misc.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_monotone.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_noise.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_openmpt.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_queue.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_robotizefilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_sfxr.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_speech.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_tedsid.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_thread.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_vic.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_vizsn.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_wav.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_waveshaperfilter.h">
+      <Filter>TrainingFramework\Soloud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Solound\soloud_wavstream.h">
+      <Filter>TrainingFramework\Soloud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
