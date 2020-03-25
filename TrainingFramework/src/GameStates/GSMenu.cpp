@@ -33,6 +33,7 @@ void GSMenu::Init()
 	button->SetSize(200, 50);
 	button->SetOnClick([]() {
 		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_Play);
+		ResourceManagers::GetInstance()->PauseSound("bg1");
 		});
 	m_listButton.push_back(button);
 
