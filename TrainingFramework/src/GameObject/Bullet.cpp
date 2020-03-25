@@ -1,28 +1,54 @@
 #include "Bullet.h"
 
-
-
-Bullet::Bullet(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, GLint numFrames, GLfloat frameTime, int dame)
+Bullet::Bullet(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, GLint numFrames, GLfloat frameTime)
 	:SpriteAnimation(model, shader, texture, numFrames, frameTime)
 {
-	m_iDamege = dame;
 }
 
 Bullet::~Bullet()
 {
 }
 
-void Bullet::Move()
+void Bullet::Move(GLfloat deltatime, ShipTypes ship)
 {
-	this->Set2DPosition(Get2DPosition().x, Get2DPosition().y + 10);
+	switch (ship)
+	{
+	case PLAYER:
+		Set2DPosition(Get2DPosition().x, Get2DPosition().y - m_iSpeed * deltatime);
+		break;
+	case MEDIUM:
+		Set2DPosition(Get2DPosition().x, Get2DPosition().y + m_iSpeed * deltatime);
+		break;
+	case BIG:
+		Set2DPosition(Get2DPosition().x, Get2DPosition().y + m_iSpeed * deltatime);
+		break;
+	default:
+		
+		break;
+	}
 }
 
-bool Bullet::IsCollide()
-{
-	return true;
-}
-
-void Bullet::SetDame(int add)
+void Bullet::IncreaseDame(int add)
 {
 	m_iDamege += add;
+}
+
+void Bullet::SetDame(int dame)
+{
+	m_iDamege = dame;
+}
+
+void Bullet::SetActive()
+{
+	m_IsActive = true;
+}
+
+void Bullet::SetDeactive()
+{
+	m_IsActive = false;
+}
+
+void Bullet::SetSpeed(int add)
+{
+	m_iSpeed = add;
 }

@@ -115,7 +115,6 @@ void Text::Draw()
 
 void Text::Update(GLfloat deltatime)
 {
-
 }
 
 

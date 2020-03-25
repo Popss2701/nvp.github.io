@@ -44,7 +44,7 @@ public:
 	virtual void Update(GLfloat deltaTime) = 0;
 
 	void			SetObjectID(GLuint id) { m_Id = id; }
-	GLint			GetObjectID(GLuint id) { return	m_Id; }
+	GLint			GetObjectID() { return	m_Id; }
 
 	void			SetName(std::string name) { m_Name = name; }
 	std::string		GetName() { return	m_Name; }
