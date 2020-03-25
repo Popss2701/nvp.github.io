@@ -188,6 +188,7 @@ void ResourceManagers::PlaySound(const std::string& name, bool loop)
 	{
 		std::string wav = m_SoundPath + name + ".wav";
 		wave = std::make_shared<SoLoud::Wav>();
+		wave->load(wav.c_str());
 		m_MapWave.insert(std::pair<std::string, std::shared_ptr<SoLoud::Wav>>(name, wave));
 	}
 	m_Soloud->play(*wave);
