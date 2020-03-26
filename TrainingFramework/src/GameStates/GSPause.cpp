@@ -72,7 +72,7 @@ void GSPause::Init()
 	m_sound->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
 	m_sound->SetSize(60, 60);
 	m_sound->SetOnClick([]() {
-		ResourceManagers::GetInstance()->PlaySound("bg1");
+		ResourceManagers::GetInstance()->PlaySound("bg2");
 		
 	});
 
@@ -82,9 +82,8 @@ void GSPause::Init()
 	m_mute->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
 	m_mute->SetSize(60, 60);
 	m_mute->SetOnClick([]() {
-		ResourceManagers::GetInstance()->PauseSound("bg1");
+		ResourceManagers::GetInstance()->PauseSound("bg2");
 		//GSPause::MuteUnmute();
-		
 	});
 
 	//text game title

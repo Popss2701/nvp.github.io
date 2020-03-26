@@ -44,6 +44,28 @@ void GSOption::Init()
 	});
 	m_listButton.push_back(button);
 	
+	//sound on button
+	texture = ResourceManagers::GetInstance()->GetTexture("1soundon");
+	auto sound = std::make_shared<GameButton>(model, shader, texture);
+	sound->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
+	sound->SetSize(60, 60);
+	sound->SetOnClick([]() {
+		ResourceManagers::GetInstance()->PlaySound("bg1");
+	});
+	m_listButton.push_back(sound);
+
+	//mute button
+	texture = ResourceManagers::GetInstance()->GetTexture("1mute");
+	auto mute = std::make_shared<GameButton>(model, shader, texture);
+	mute->Set2DPosition(screenWidth / 2 - 15, screenHeight / 2 + 15);
+	mute->SetSize(60, 60);
+	mute->SetOnClick([]() {
+		ResourceManagers::GetInstance()->PauseSound("bg1");
+		
+	});
+	m_listButton.push_back(mute);
+
+	
 	//text game title
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("arialbd");
